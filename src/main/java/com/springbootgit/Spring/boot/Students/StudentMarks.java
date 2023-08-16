@@ -49,6 +49,7 @@ public class StudentMarks {
 	public int getMaths() {
 		return Maths;
 	}
+	
 
 	public void setMaths(int maths) {
 		Maths = maths;
