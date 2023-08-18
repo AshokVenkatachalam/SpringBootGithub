@@ -30,19 +30,25 @@ public class StudentController {
 	@PostMapping("register")
 	public ResponseEntity<String> register(@RequestBody Students student) {
 
-	return	studentservice.register(student.getFathername(),student.getStudentname(),student.getStudentdept(),student.getStudentage(),student.getEmail(),student.getPassword());
+	return	studentservice.register(student);
 	}
 
 	@PostMapping("login")
 	public ResponseEntity<String> login(@RequestBody Students student) {
 		
-		return	studentservice.login(student.getEmail(),student.getPassword());
+		return	studentservice.login(student);
 	}
 
 	@GetMapping("marks/{id}")
 	public List<StudentMarks> viewMarks(@PathVariable Long id) {
 
 		return studentservice.viewMarks(id);
+	}
+	
+	@PostMapping("update/{id}")
+	public ResponseEntity<String> updateProfile(@PathVariable Long id,@RequestBody Students student) {
+
+		return studentservice.updateProfile( id,student);
 	}
 
 

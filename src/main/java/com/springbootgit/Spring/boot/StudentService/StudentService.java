@@ -1,11 +1,14 @@
 package com.springbootgit.Spring.boot.StudentService;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.springbootgit.Spring.boot.Repository.MarksRepository;
 import com.springbootgit.Spring.boot.Repository.StudentRepository;
@@ -27,23 +30,17 @@ public class StudentService {
 		this.studentmarks = studentmarks;
 	}
 
-	public ResponseEntity<String> register(String fathername, String studname, Department dept, String age,
-			String email, String password) {
+	public ResponseEntity<String> register(Students student) {
 
-//		List<Students> checkstudent=studentrepository.findAllByFathername(fathername);
-		boolean checkstudent = studentrepository.existsByEmail(email);
-
-//		List<Students> checkstudent1=studentrepository.findAllByStudentname(studname);
-
+		boolean checkstudent = studentrepository.existsByEmail(student.getEmail());
 		if (checkstudent == false) {
-
 			Students newstudent = new Students();
-			newstudent.setFathername(fathername);
-			newstudent.setStudentname(studname);
-			newstudent.setStudentage(age);
-			newstudent.setStudentdept(dept);
-			newstudent.setEmail(email);
-			newstudent.setPassword(password);
+			newstudent.setFathername(student.getFathername());
+			newstudent.setStudentname(student.getStudentname());
+			newstudent.setStudentage(student.getStudentage());
+			newstudent.setStudentdept(student.getStudentdept());
+			newstudent.setEmail(student.getEmail());
+			newstudent.setPassword(student.getPassword());
 
 			Students savestudent = studentrepository.save(newstudent);
 
@@ -55,11 +52,11 @@ public class StudentService {
 		}
 	}
 
-	public ResponseEntity<String> login(String email, String password) {
+	public ResponseEntity<String> login(Students student) {
 
-		Students checkstudent = studentrepository.findByEmail(email);
+		Students checkstudent = studentrepository.findByEmail(student.getEmail());
 
-		if (checkstudent.getPassword().equals(password)) {
+		if (checkstudent.getPassword().equals(student.getPassword())) {
 
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login Success");
 
@@ -72,13 +69,41 @@ public class StudentService {
 	}
 
 	public List<StudentMarks> viewMarks(Long id) {
-		
-		List<StudentMarks> marks= studentmarks.findAllBystudent_id(id);
-		
+
+		List<StudentMarks> marks = studentmarks.findAllBystudent_id(id);
+
 		return marks;
 
 	}
 
+	public ResponseEntity<String> updateProfile(Long id, Students student) {
 
+		Optional<Students> checkstudent = studentrepository.findById(id);
+
+		if (checkstudent.isPresent()) {
+			Students exist = checkstudent.get();
+			exist.setEmail(student.getEmail());
+			exist.setFathername(student.getFathername());
+			exist.setPassword(student.getPassword());
+			exist.setStudentage(student.getStudentage());
+
+			studentrepository.save(exist);
+
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Profile Updated");
+
+		} else {
+
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("User Not Exist");
+		}
+
+	}
+	
+	public ResponseEntity<List<Students>> viewStudents() {
+		
+	List<Students> liststudents=	studentrepository.findAll();
+	
+	return ResponseEntity.ok(liststudents);
+		
+	}
 
 }
