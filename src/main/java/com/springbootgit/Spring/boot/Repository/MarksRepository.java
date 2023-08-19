@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.springbootgit.Spring.boot.Students.StudentMarks;
+import com.springbootgit.Spring.boot.model.StudentMarks;
 
 public interface MarksRepository extends JpaRepository<StudentMarks, Long> {
 

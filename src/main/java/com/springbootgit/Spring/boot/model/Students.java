@@ -1,4 +1,4 @@
-package com.springbootgit.Spring.boot.Students;
+package com.springbootgit.Spring.boot.model;
 
 import java.util.List;
 

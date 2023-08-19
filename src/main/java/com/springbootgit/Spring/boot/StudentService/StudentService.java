@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.springbootgit.Spring.boot.Repository.MarksRepository;
 import com.springbootgit.Spring.boot.Repository.StudentRepository;
-import com.springbootgit.Spring.boot.Students.Department;
-import com.springbootgit.Spring.boot.Students.StudentMarks;
-import com.springbootgit.Spring.boot.Students.Students;
+import com.springbootgit.Spring.boot.model.Department;
+import com.springbootgit.Spring.boot.model.StudentMarks;
+import com.springbootgit.Spring.boot.model.Students;
 
 @Service
 public class StudentService {

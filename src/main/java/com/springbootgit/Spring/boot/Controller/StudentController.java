@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootgit.Spring.boot.StudentService.StudentService;
-import com.springbootgit.Spring.boot.Students.StudentMarks;
-import com.springbootgit.Spring.boot.Students.Students;
+import com.springbootgit.Spring.boot.model.StudentMarks;
+import com.springbootgit.Spring.boot.model.Students;
 
 @RestController
 @RequestMapping("/api/stud/")

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.springbootgit.Spring.boot.Students.Department;
-import com.springbootgit.Spring.boot.Students.Students;
+import com.springbootgit.Spring.boot.model.Department;
+import com.springbootgit.Spring.boot.model.Students;
 
 
 public interface StudentRepository extends JpaRepository<Students, Long> {

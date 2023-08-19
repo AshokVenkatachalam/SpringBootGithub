@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.springbootgit.Spring.boot.StudentService.StaffService;
 import com.springbootgit.Spring.boot.StudentService.StudentService;
-import com.springbootgit.Spring.boot.Students.Email;
-import com.springbootgit.Spring.boot.Students.Staffs;
-import com.springbootgit.Spring.boot.Students.StudentMarks;
-import com.springbootgit.Spring.boot.Students.Students;
+import com.springbootgit.Spring.boot.model.Email;
+import com.springbootgit.Spring.boot.model.Staffs;
+import com.springbootgit.Spring.boot.model.StudentMarks;
+import com.springbootgit.Spring.boot.model.Students;
 
 @RestController
 @RequestMapping("api/staff/")

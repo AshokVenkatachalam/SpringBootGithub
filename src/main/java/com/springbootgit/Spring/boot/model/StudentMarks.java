@@ -1,4 +1,4 @@
-package com.springbootgit.Spring.boot.Students;
+package com.springbootgit.Spring.boot.model;
 
 import javax.annotation.Generated;
 import javax.persistence.Column;
