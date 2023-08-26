@@ -2,11 +2,12 @@ package com.springbootgit.Spring.boot.Controller;
 
 import java.util.List;
 
-
+import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,13 +43,17 @@ public class StaffController {
 		return staffservice.register(staf);
 	}
 
+	
+
 	@PostMapping("login")
 	public ResponseEntity<String> login(@RequestBody Staffs staf) {
 
 		return staffservice.login(staf);
 	}
 
+	// @PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("viewstudents")
+//	@RolesAllowed("ADMIN")
 	public ResponseEntity<List<Students>> viewStudents() {
 
 		return studentservice.viewStudents();
@@ -66,10 +71,10 @@ public class StaffController {
 		return staffservice.emailNotification(email);	
 	}
 	
-	@GetMapping("welcome")
-	public ResponseEntity<String> welcome(){
+	@GetMapping("/fun")
+	public String welcome(){
 		
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Welcome You");
+		return "Welcome You";
 	}
 	
 	
