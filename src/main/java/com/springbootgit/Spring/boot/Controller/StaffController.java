@@ -24,7 +24,6 @@ import com.springbootgit.Spring.boot.model.Students;
 @RestController
 @RequestMapping("api/")
 public class StaffController {
-	
 
 	private final StaffService staffservice;
 
@@ -43,41 +42,35 @@ public class StaffController {
 		return staffservice.register(staf);
 	}
 
-	
-
 	@PostMapping("login")
 	public ResponseEntity<String> login(@RequestBody Staffs staf) {
 
 		return staffservice.login(staf);
 	}
 
-	// @PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("viewstudents")
-//	@RolesAllowed("ADMIN")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public ResponseEntity<List<Students>> viewStudents() {
 
 		return studentservice.viewStudents();
 	}
 
 	@PostMapping("addmarks/{id}")
-	public ResponseEntity<String> addMarks( @RequestBody StudentMarks studentmarks,@PathVariable Long id) {
-			
-		return staffservice.addMarks(id,studentmarks);
+	public ResponseEntity<String> addMarks(@RequestBody StudentMarks studentmarks, @PathVariable Long id) {
+
+		return staffservice.addMarks(id, studentmarks);
 	}
-	
+
 	@PostMapping("email/send")
 	public ResponseEntity<String> emailNotification(@RequestBody Email email) {
-		
-		return staffservice.emailNotification(email);	
+
+		return staffservice.emailNotification(email);
 	}
-	
+
 	@GetMapping("/fun")
-	public String welcome(){
-		
+	public String welcome() {
+
 		return "Welcome You";
 	}
-	
-	
-	
 
 }
