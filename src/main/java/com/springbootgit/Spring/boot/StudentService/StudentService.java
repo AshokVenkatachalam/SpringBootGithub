@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.springbootgit.Spring.boot.Repository.MarksRepository;
 import com.springbootgit.Spring.boot.Repository.StudentRepository;
-import com.springbootgit.Spring.boot.model.Department;
 import com.springbootgit.Spring.boot.model.StudentMarks;
 import com.springbootgit.Spring.boot.model.Students;
 
@@ -42,7 +38,7 @@ public class StudentService {
 			newstudent.setEmail(student.getEmail());
 			newstudent.setPassword(student.getPassword());
 
-			Students savestudent = studentrepository.save(newstudent);
+			 studentrepository.save(newstudent);
 
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Resistered Successfully");
 
